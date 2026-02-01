@@ -78,7 +78,7 @@
             <li class="nav-item">
               <a href="admin.php" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
-                <p>Admin</p>
+                <p>Data Admin</p>
               </a>
             </li>
             <li class="nav-item has-treeview">
