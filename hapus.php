@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 $id = mysqli_real_escape_string($koneksi, $_GET['id']);
 
 // Hapus data barang berdasarkan ID
-$query = "DELETE FROM barang WHERE id = '$id'";
+$query = "DELETE FROM brng WHERE id = '$id'";
 
 if (mysqli_query($koneksi, $query)) {
     showMessage('success', 'Data barang berhasil dihapus!');

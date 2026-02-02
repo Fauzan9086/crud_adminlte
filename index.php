@@ -25,7 +25,7 @@ include 'template/header.php';
                         <div class="info-box-content">
                             <span class="info-box-text">Total Barang</span>
                             <?php
-                            $qBarang = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM barang");
+                            $qBarang = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM brng");
                             $total_barang = mysqli_fetch_assoc($qBarang)['total'] ?? 0;
                             ?>
                             <span class="info-box-number"><?= $total_barang; ?></span>
@@ -42,7 +42,7 @@ include 'template/header.php';
                         <div class="info-box-content">
                             <span class="info-box-text">Total Stok</span>
                             <?php
-                            $qStok = mysqli_query($koneksi, "SELECT SUM(stok) AS total_stok FROM barang");
+                            $qStok = mysqli_query($koneksi, "SELECT SUM(stok) AS total_stok FROM brng");
                             $total_stok = mysqli_fetch_assoc($qStok)['total_stok'] ?? 0;
                             ?>
                             <span class="info-box-number"><?= $total_stok; ?></span>
@@ -59,7 +59,7 @@ include 'template/header.php';
                         <div class="info-box-content">
                             <span class="info-box-text">Total Admin</span>
                             <?php
-                            $qAdmin = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM admin");
+                            $qAdmin = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM staff_admin");
                             $total_admin = mysqli_fetch_assoc($qAdmin)['total'] ?? 0;
                             ?>
                             <span class="info-box-number"><?= $total_admin; ?></span>
@@ -96,7 +96,7 @@ include 'template/header.php';
                             </a>
 
                             <?php if ($total_admin == 0): ?>
-                                <a href="tambah_admin.php" class="btn btn-success ml-2">
+                                <a href="admin-tambah.php" class="btn btn-success ml-2">
                                     <i class="fas fa-user-plus"></i> Tambah Admin Pertama
                                 </a>
                             <?php endif; ?>
