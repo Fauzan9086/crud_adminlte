@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = mysqli_real_escape_string($koneksi, $_POST['password']);
     $telepon  = mysqli_real_escape_string($koneksi, $_POST['telepon']);
 
-    $query = "INSERT INTO staff_admin (nama, email, password, telepon) 
+    $query = "INSERT INTO admin (nama, email, password, telepon) 
               VALUES ('$nama', '$email', '$password', '$telepon')";
 
     if (mysqli_query($koneksi, $query)) {

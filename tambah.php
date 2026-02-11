@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stok = mysqli_real_escape_string($koneksi, $_POST['stok']);
     $deskripsi = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
 
-    $query = "INSERT INTO brng (nama_barang, kategori, harga, stok, deskripsi) 
+    $query = "INSERT INTO barang (nama_barang, kategori, harga, stok, deskripsi) 
               VALUES ('$nama_barang', '$kategori', '$harga', '$stok', '$deskripsi')";
 
     if (mysqli_query($koneksi, $query)) {
@@ -63,7 +63,7 @@ include 'template/header.php';
                                         <option value="">Pilih Kategori</option>
                                         <option value="Elektronik" selected>Elektronik</option>
                                         <option value="Furniture" >Furniture</option>
-                                        <option value="Buku" selected>Bselecteduku</option>
+                                        <option value="Buku" selected>Buku</option>
                                         <option value="Aksesoris" selected>Aksesoris</option>
                                         <option value="Lainnya" selected>Lainnya</option>
                                     </select>

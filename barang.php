@@ -55,7 +55,7 @@ $message = getMessage();
                         </thead>
                         <tbody>
                             <?php
-                            $query = "SELECT * FROM brng ORDER BY id DESC";
+                            $query = "SELECT * FROM barang ORDER BY id DESC";
                             $result = mysqli_query($koneksi, $query);
                             $no = 1;
 

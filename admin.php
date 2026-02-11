@@ -56,7 +56,7 @@ $message = getMessage();
                         </thead>
                         <tbody>
                             <?php
-                            $query  = "SELECT * FROM staff_admin ORDER BY id DESC";
+                            $query  = "SELECT * FROM admin ORDER BY id DESC";
                             $result = mysqli_query($koneksi, $query);
                             $no = 1;
 

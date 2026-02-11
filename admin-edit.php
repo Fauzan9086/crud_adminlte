@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 $id = mysqli_real_escape_string($koneksi, $_GET['id']);
 
 // Ambil data admin
-$query = "SELECT * FROM staff_admin WHERE id = '$id'";
+$query = "SELECT * FROM admin WHERE id = '$id'";
 $result = mysqli_query($koneksi, $query);
 $admin = mysqli_fetch_assoc($result);
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = mysqli_real_escape_string($koneksi, $_POST['password']);
     $telepon  = mysqli_real_escape_string($koneksi, $_POST['telepon']);
 
-    $query = "UPDATE staff_admin SET 
+    $query = "UPDATE admin SET 
                 nama = '$nama',
                 email = '$email',
                 password = '$password',

@@ -8,7 +8,7 @@ if (!isset($_GET['id'])) {
 
 $id = mysqli_real_escape_string($koneksi, $_GET['id']);
 
-$query = "SELECT * FROM brng WHERE id = '$id'";
+$query = "SELECT * FROM barang WHERE id = '$id'";
 $result = mysqli_query($koneksi, $query);
 $barang = mysqli_fetch_assoc($result);
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stok = mysqli_real_escape_string($koneksi, $_POST['stok']);
     $deskripsi = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
 
-    $query = "UPDATE brng SET 
+    $query = "UPDATE barang SET 
               nama_barang = '$nama_barang',
               kategori = '$kategori',
               harga = '$harga',
