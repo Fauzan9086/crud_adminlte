@@ -1,6 +1,7 @@
 <?php
 include 'config.php';
 include 'template/header.php';
+include 'fungsi.php';
 
 $message = getMessage();
 ?>
@@ -30,6 +31,46 @@ $message = getMessage();
                     <?php echo $message['text']; ?>
                 </div>
             <?php endif; ?>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Pencarian dan Filter</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="GET" action="barang.php" class="form-inline">
+                        <div class="form-group mb-2 mr-2">
+                            <label for="keyword" class="sr-only">Kata Kunci</label>
+                            <input type="text" class="form-control" id="keyword" name="keyword"
+                                placeholder="Cari nama barang..." value="<?php echo htmlspecialchars($keyword); ?>">
+                        </div>
+
+                        <div class="form-group mb-2 mr-2">
+                            <label for="kategori" class="sr-only">Kategori</label>
+                            <select class="form-control" id="kategori" name="kategori">
+                                <option value="semua">Semua Kategori</option>
+                                <?php foreach ($kategori_list as $kat): ?>
+                                    <option value="<?php echo htmlspecialchars($kat); ?>"
+                                        <?php echo ($kategori_filter == $kat) ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($kat); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mb-2 mr-2">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+
+                        <a href="barang.php" class="btn btn-secondary mb-2">
+                            <i class="fas fa-redo"></i> Reset
+                        </a>
+                    </form>
+                </div>
+            </div>
 
             <div class="card">
                 <div class="card-header">
@@ -80,7 +121,7 @@ $message = getMessage();
                                         </a>
                                         <a href="hapus.php?id=<?php echo $row['id']; ?>"
                                             class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Yakin Anda Ingin Menghapus?')">
+                                            onclick="return confirm('Yakin ingin menghapus?')">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
