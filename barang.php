@@ -35,7 +35,8 @@ $message = getMessage();
 
     <section class="content">
         <div class="container-fluid">
-            <?php if ($message): ?>
+            
+           <?php if ($message): ?>
                 <div class="alert alert-<?php echo $message['type']; ?> alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <?php echo $message['text']; ?>
@@ -91,16 +92,24 @@ $message = getMessage();
                         </a>
                     </div>
                 </div>
-                <div class="card-body">
+                
+<div class="card-body">
                     <?php if (mysqli_num_rows($result) > 0): ?>
-                        <table class="table table-bordered table-striped">
+                        <div class="alert alert-info">
+                            Ditemukan <?php echo mysqli_num_rows($result); ?> data barang
+                            <?php if (!empty($keyword)): ?>
+                                dengan kata kunci "<?php echo htmlspecialchars($keyword); ?>"
+                            <?php endif; ?>
+                        </div>
+                        <table class="table table-bordered table-striped datatable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No</th>
                                     <th>Nama Barang</th>
                                     <th>Kategori</th>
                                     <th>Harga</th>
                                     <th>Stok</th>
+                                    <th>Deskripsi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -146,10 +155,12 @@ $message = getMessage();
                                 Coba dengan kata kunci lain.
                             <?php endif; ?>
                         </div>
-                    <?php endif ; ?>
+                    <?php endif; ?>
                 </div>
 
-                        </table>
+
+
+
                 </div>
             </div>
         </div>
