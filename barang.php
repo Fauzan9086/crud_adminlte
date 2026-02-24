@@ -57,7 +57,7 @@ $message = getMessage();
                         <div class="form-group mb-2 mr-2">
                             <label for="keyword" class="sr-only">Kata Kunci</label>
                             <input type="text" class="form-control" id="keyword" name="keyword"
-                                placeholder="Cari nama barang..." value="<?php echo htmlspecialchars($keyword); ?>">
+                                placeholder="Cari nama barang" value="<?php echo htmlspecialchars($keyword); ?>">
                         </div>
 
                         <div class="form-group mb-2 mr-2">
