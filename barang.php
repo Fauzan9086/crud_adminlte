@@ -3,6 +3,16 @@ include 'config.php';
 include 'template/header.php';
 include 'fungsi.php';
 
+// Ambil parameter pencarian
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+$kategori_filter = isset($_GET['kategori']) ? $_GET['kategori'] : '';
+
+// Ambil data dengan filter
+$result = getBarang($keyword, $kategori_filter);
+
+// Ambil semua kategori untuk dropdown
+$kategori_list = getKategori();
+
 $message = getMessage();
 ?>
 
@@ -31,6 +41,7 @@ $message = getMessage();
                     <?php echo $message['text']; ?>
                 </div>
             <?php endif; ?>
+
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Pencarian dan Filter</h3>
@@ -71,7 +82,6 @@ $message = getMessage();
                     </form>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Daftar Barang</h3>
@@ -82,53 +92,64 @@ $message = getMessage();
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped datatable">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Barang</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
-                                <th>Stok</th>
-                                <th>Deskripsi</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $query = "SELECT * FROM barang ORDER BY id DESC";
-                            $result = mysqli_query($koneksi, $query);
-                            $no = 1;
-
-                            while ($row = mysqli_fetch_assoc($result)):
-                            ?>
+                    <?php if (mysqli_num_rows($result) > 0): ?>
+                        <table class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo htmlspecialchars($row['nama_barang']); ?></td>
-                                    <td>
-                                        <span class="badge bg-info"><?php echo htmlspecialchars($row['kategori']); ?></span>
-                                    </td>
-                                    <td>Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></td>
-                                    <td>
-                                        <span class="badge bg-<?php echo ($row['stok'] > 0) ? 'success' : 'danger'; ?>">
-                                            <?php echo $row['stok']; ?>
-                                        </span>
-                                    </td>
-                                    <td><?php echo substr(htmlspecialchars($row['deskripsi']), 0, 50); ?>...</td>
-                                    <td>
-                                        <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="hapus.php?id=<?php echo $row['id']; ?>"
-                                            class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Yakin ingin menghapus?')">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Nama Barang</th>
+                                    <th>Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // $query = "SELECT * FROM barang ORDER BY id DESC";
+                                // $result = mysqli_query($koneksi, $query);
+                                $no = 1;
+
+                                while ($row = mysqli_fetch_assoc($result)):
+                                ?>
+                                    <tr>
+                                        <td><?php echo $no++; ?></td>
+                                        <td><?php echo htmlspecialchars($row['nama_barang']); ?></td>
+                                        <td>
+                                            <span class="badge bg-info"><?php echo htmlspecialchars($row['kategori']); ?></span>
+                                        </td>
+                                        <td>Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></td>
+                                        <td>
+                                            <span class="badge bg-<?php echo ($row['stok'] > 0) ? 'success' : 'danger'; ?>">
+                                                <?php echo $row['stok']; ?>
+                                            </span>
+                                        </td>
+                                        <td><?php echo substr(htmlspecialchars($row['deskripsi']), 0, 50); ?>...</td>
+                                        <td>
+                                            <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="hapus.php?id=<?php echo $row['id']; ?>"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Yakin ingin menghapus?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <div class="alert alert-warning text-center">
+                            <i class="fas fa-exclamation-triangle"></i> Tidak ada data barang ditemukan.
+                            <?php if (!empty($keyword)): ?>
+                                Coba dengan kata kunci lain.
+                            <?php endif; ?>
+                        </div>
+                    <?php endif ; ?>
+                </div>
+
+                        </table>
                 </div>
             </div>
         </div>
