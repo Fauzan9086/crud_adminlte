@@ -87,7 +87,7 @@ $message = getMessage();
                 <div class="card-header">
                     <h3 class="card-title">Daftar Barang</h3>
                     <div class="card-tools">
-                        <a href="print-barang.php" class="btn btn-primary btn-sm">
+                        <a href="print-barang.php?keyword=<?php echo urlencode($keyword); ?>&kategori=<?php echo urlencode($kategori_filter); ?>" class="btn btn-primary btn-sm">
                             <i class="fas fa-print"></i> Cetak Data Barang
                         </a>
                         <a href="tambah.php" class="btn btn-primary btn-sm">
@@ -118,8 +118,8 @@ $message = getMessage();
                             </thead>
                             <tbody>
                                 <?php
-                                 $query = "SELECT * FROM barang ORDER BY id DESC";
-                                 $result = mysqli_query($koneksi, $query);
+                                 //$query = "SELECT * FROM barang ORDER BY id DESC";
+                                 //$result = mysqli_query($koneksi, $query);
                                 $no = 1;
 
                                 while ($row = mysqli_fetch_assoc($result)):
