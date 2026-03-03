@@ -118,8 +118,8 @@ $message = getMessage();
                             </thead>
                             <tbody>
                                 <?php
-                                // $query = "SELECT * FROM barang ORDER BY id DESC";
-                                // $result = mysqli_query($koneksi, $query);
+                                 $query = "SELECT * FROM barang ORDER BY id DESC";
+                                 $result = mysqli_query($koneksi, $query);
                                 $no = 1;
 
                                 while ($row = mysqli_fetch_assoc($result)):
